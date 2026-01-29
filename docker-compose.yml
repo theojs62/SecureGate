@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: cesi_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: cesi_backend
+    environment:
+      - PORT=8080
+      - MONGO_URI=mongodb://mongo:27017/cesi_access
+      - JWT_SECRET=CHANGE_ME_SUPER_SECRET
+      - PRESENCE_BADGE_WINDOW_MS=120000
+      # SMTP optional:
+      - SMTP_HOST=
+      - SMTP_PORT=587
+      - SMTP_USER=
+      - SMTP_PASS=
+      - ALERT_EMAIL_TO=securite@cesi.fr
+      - ALERT_EMAIL_FROM=robot@cesi.fr
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    container_name: cesi_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

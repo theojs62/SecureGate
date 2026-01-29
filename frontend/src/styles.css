@@ -1,0 +1,133 @@
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  color: #111;
+  background: #f6f7fb;
+}
+
+* { box-sizing: border-box; }
+
+.appShell {
+  display: grid;
+  grid-template-columns: 1fr 280px; /* sidebar à droite */
+  min-height: 100vh;
+}
+
+.mainArea {
+  padding: 18px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.title { font-weight: 700; font-size: 18px; }
+.subtitle { color: #666; font-size: 13px; margin-top: 2px; }
+
+.content { margin-top: 16px; }
+
+.sidebarRight {
+  padding: 18px;
+  border-left: 1px solid #e7e7ee;
+  background: #ffffff;
+}
+
+.sidebarTitle {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.navItem {
+  display: block;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  color: #111;
+  text-decoration: none;
+  background: #f4f5fa;
+}
+.navItem.active {
+  background: #111;
+  color: #fff;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.centerPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.full { grid-column: 1 / -1; }
+
+.kpiLabel { color: #666; font-size: 12px; }
+.kpiValue { font-size: 32px; font-weight: 800; margin-top: 6px; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.table th, .table td {
+  border-bottom: 1px solid #eee;
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 13px;
+}
+.table th { color: #555; font-weight: 700; }
+
+.rowBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.row { display: flex; align-items: center; gap: 8px; }
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.btn, .btnPrimary, .btnSmall {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+.btn { background: #f1f1f1; }
+.btnPrimary { background: #111; color: #fff; width: 100%; }
+.btnSmall { background: #f1f1f1; padding: 8px 10px; margin-right: 6px; }
+
+.muted { color: #666; }
+.small { font-size: 12px; }
+.error { background: #ffe3e3; padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+
+.ok { color: #137333; font-weight: 700; }
+.bad { color: #b00020; font-weight: 700; }

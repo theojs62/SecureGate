@@ -1,0 +1,42 @@
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import DashboardLayout from "./layout/DashboardLayout.jsx";
+import Overview from "./pages/Overview.jsx";
+import Presence from "./pages/Presence.jsx";
+import AccessLogs from "./pages/AccessLogs.jsx";
+import Alerts from "./pages/Alerts.jsx";
+import Sensors from "./pages/Sensors.jsx";
+import Users from "./pages/Users.jsx";
+
+function RequireAuth({ children }) {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" replace />;
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/dashboard/overview" replace />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <DashboardLayout />
+          </RequireAuth>
+        }
+      >
+        <Route path="overview" element={<Overview />} />
+        <Route path="presence" element={<Presence />} />
+        <Route path="access-logs" element={<AccessLogs />} />
+        <Route path="alerts" element={<Alerts />} />
+        <Route path="sensors" element={<Sensors />} />
+        <Route path="users" element={<Users />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/dashboard/overview" replace />} />
+    </Routes>
+  );
+}
